@@ -4,3 +4,9 @@ table,tr,td{
     border-collapse: collapse;
     border:1px black solid;
 }
+
+td{
+    height: 50px;
+    width: 50px;
+    text-align: center;
+}
