@@ -5,39 +5,52 @@
         <meta charset="UTF-8">
         <title>Windows電卓シミュレータ</title>
         <link rel="stylesheet" href="./css/default.css">
-    </head>
+        <script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=MML_SVG"></script>    </head>
     <body>
         <h1>Windows電卓シミュレータ</h1>
         <table>
             <tr>
-                <td colspan="4"></td>
+                <td colspan="4" class="disp" id="disp_output"></td>
             </tr>
             <tr>
-                <td colspan="4"></td>
+                <td colspan="4" class="disp" id="disp_input">0</td>
             </tr>
             <tr>
-                <td>7</td>
-                <td>8</td>
-                <td>9</td>
-                <td>×</td>
+                <td class="button">%</td>
+                <td class="button">CE</td>
+                <td class="button" onclick="click_C();">C</td>
+                <td class="button">BS</td>
             </tr>
             <tr>
-                <td>4</td>
-                <td>5</td>
-                <td>6</td>
-                <td>-</td>
+                <td class="button">1/x</td>
+                <td class="button">x<sup>2</sup></td>
+                <td class="button"><math><msqrt><mi>x</mi></msqrt></math></td>
+                <td class="button">÷</td>
             </tr>
             <tr>
-                <td>1</td>
-                <td>2</td>
-                <td>3</td>
-                <td>+</td>
+                <td class="button" onclick="click_num(this.innerText);">7</td>
+                <td class="button" onclick="click_num(this.innerText);">8</td>
+                <td class="button" onclick="click_num(this.innerText);">9</td>
+                <td class="button">×</td>
             </tr>
             <tr>
-                <td>±</td>
-                <td>0</td>
-                <td>.</td>
-                <td>=</td>
+                <td class="button" onclick="click_num(this.innerText);">4</td>
+                <td class="button" onclick="click_num(this.innerText);">5</td>
+                <td class="button" onclick="click_num(this.innerText);">6</td>
+                <td class="button">-</td>
+            </tr>
+            <tr>
+                <td class="button" onclick="click_num(this.innerText);">1</td>
+                <td class="button" onclick="click_num(this.innerText);">2</td>
+                <td class="button" onclick="click_num(this.innerText);">3</td>
+                <td class="button" onclick="click_plus();">+</td>
+            </tr>
+            <tr>
+                <td class="button">+/-</td>
+                <td class="button" onclick="click_num(this.innerText);">0</td>
+                <td class="button">.</td>
+                <td class="button">=</td>
             </tr>
         </table>
         <script src="./js/default.js"></script>
