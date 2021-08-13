@@ -1,5 +1,6 @@
 let variable_calced = 0; // 前までの計算結果
 let variable_inputting = 0; // 入力中の値
+let variable_result = 0; // 計算結果
 let operand_flag = false; // 演算子(+-×÷)を押された状態を覚える
 let equal_flag = false; // 計算終了の状態(イコールボタンを押された状態)を覚える
 
@@ -23,7 +24,6 @@ function click_num(num){
     }else{
         a.innerText = num;
         variable_inputting = num;
-        b.innerText = "";
         equal_flag = false;
     }
 }
@@ -49,9 +49,9 @@ function click_equal(){
     a = document.getElementById("disp_input");
     b = document.getElementById("disp_output");
     b.innerText = b.innerText + a.innerText + "=";
-    variable_calced += variable_inputting;
-    a.innerText = variable_calced;
-    variable_inputting = variable_calced;
+    variable_result = variable_calced + variable_inputting;
+    a.innerText = variable_result;
+    variable_inputting = variable_result;
     equal_flag = true;
 }
 
