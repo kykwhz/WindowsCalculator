@@ -30,6 +30,7 @@ let variable_calced = 0; // 前までの計算結果
 let variable_inputting = 0; // 入力中の値
 let variable_result = 0; // 計算結果
 let operand_flag = false; // 演算子(+-×÷)を押された状態を覚える
+let operand_state = 0;
 let equal_flag = false; // 計算終了の状態(イコールボタンを押された状態)を覚える
 
 function click_num(num) {
@@ -38,7 +39,7 @@ function click_num(num) {
 	i = a.innerText;
 	num = parseInt(num);
 	if (!(equal_flag)) {
-		if (!(operand_flag)) {
+		if (!(operand_state)) {
 			if (!(a == 0 && num == 0)) {
 				i = i * 10 + num;
 				variable_inputting = i;
@@ -47,7 +48,7 @@ function click_num(num) {
 		} else {
 			a.innerText = num;
 			variable_inputting = num;
-			operand_flag = false;
+			operand_state = 0;
 		}
 	} else {
 		a.innerText = num;
@@ -70,7 +71,7 @@ function click_plus() {
 	b = document.getElementById("disp_output");
 	b.innerText = variable_inputting + "+";
 	variable_calced = variable_inputting;
-	operand_flag = true;
+	operand_flag = 1;
 }
 
 function click_minus() {
@@ -78,7 +79,7 @@ function click_minus() {
 	b = document.getElementById("disp_output");
 	b.innerText = variable_inputting + "-";
 	variable_calced = variable_inputting;
-	operand_flag = true;
+	operand_flag = 2;
 }
 
 function click_equal() {
