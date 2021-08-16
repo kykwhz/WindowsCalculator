@@ -39,7 +39,7 @@ function click_num(num) {
 	i = a.innerText;
 	num = parseInt(num);
 	if (!(equal_flag)) {
-		if (operand_state) {
+		if (!(operand_state)) {
 			if (!(a == 0 && num == 0)) {
 				i = i * 10 + num;
 				variable_inputting = i;
@@ -71,7 +71,7 @@ function click_plus() {
 	b = document.getElementById("disp_output");
 	b.innerText = variable_inputting + "+";
 	variable_calced = variable_inputting;
-	operand_flag = 1;
+	operand_state = 1;
 }
 
 function click_minus() {
@@ -79,14 +79,21 @@ function click_minus() {
 	b = document.getElementById("disp_output");
 	b.innerText = variable_inputting + "-";
 	variable_calced = variable_inputting;
-	operand_flag = 2;
+	operand_state = 2;
 }
 
 function click_equal() {
 	a = document.getElementById("disp_input");
 	b = document.getElementById("disp_output");
 	b.innerText = b.innerText + a.innerText + "=";
-	variable_result = variable_calced + variable_inputting;
+	switch(operand_state){
+		case 1:
+			variable_result = variable_calced + variable_inputting;
+			break;
+		case 2:
+			variable_result = variable_calced - variable_inputting;
+			break;
+	}
 	a.innerText = variable_result;
 	variable_inputting = variable_result;
 	equal_flag = true;
