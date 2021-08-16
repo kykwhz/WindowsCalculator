@@ -39,7 +39,7 @@ function click_num(num) {
 	i = a.innerText;
 	num = parseInt(num);
 	if (!(equal_flag)) {
-		if (!(operand_state)) {
+		if (operand_state) {
 			if (!(a == 0 && num == 0)) {
 				i = i * 10 + num;
 				variable_inputting = i;
