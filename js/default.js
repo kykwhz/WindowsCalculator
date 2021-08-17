@@ -26,11 +26,10 @@
 // |         1          |   ÷   (       4       ) |        2        |       0.5       |
 // +--------------------+-------------------------+-----------------+-----------------+
 
-let variable_calced = 0; // 前までの計算結果
-let variable_inputting = 0; // 入力中の値
+let operand1 = 0; // operand1 (operator) operand2
+let operand2 = 0;
 let variable_result = 0; // 計算結果
-let operand_flag = false; // 演算子(+-×÷)を押された状態を覚える
-let operand_state;
+let operator_state; // 演算子(+-×÷)を押された状態を覚える。何も押していない状態は0、+は1、-は2、×は3、÷は4に対応する。
 let equal_flag = false; // 計算終了の状態(イコールボタンを押された状態)を覚える
 
 function click_num(num) {
@@ -39,20 +38,26 @@ function click_num(num) {
 	i = a.innerText;
 	num = parseInt(num);
 	if (!(equal_flag)) {
-		if (!(operand_state)) {
+		if (!(operator_state)) {
 			if (!(a == 0 && num == 0)) {
 				i = i * 10 + num;
-				variable_inputting = i;
+				operand1 = i;
 				a.innerText = i;
 			}
 		} else {
-			a.innerText = num;
-			variable_inputting = num;
-			operand_state = 0;
+//			a.innerText = num;
+//			variable_inputting = num;
+//			operand_state = 0;
+			if (!(a == 0 && num == 0)) {
+				i = i * 10 + num;
+				operand2 = i;
+				a.innerText = i;
+			}
+
 		}
 	} else {
 		a.innerText = num;
-		variable_inputting = num;
+		operand1 = num;
 		equal_flag = false;
 	}
 }
@@ -62,23 +67,21 @@ function click_C() {
 	b = document.getElementById("disp_output");
 	a.innerText = 0;
 	b.innerText = "";
-	variable_inputting = 0;
-	variable_calced = 0;
+	operand1 = 0;
+	operand2 = 0;
 }
 
 function click_plus() {
 	a = document.getElementById("disp_input");
 	b = document.getElementById("disp_output");
-	b.innerText = variable_inputting + "+";
-	variable_calced = variable_inputting;
+	b.innerText = operand1 + "+";
 	operand_state = 1;
 }
 
 function click_minus() {
 	a = document.getElementById("disp_input");
 	b = document.getElementById("disp_output");
-	b.innerText = variable_inputting + "-";
-	variable_calced = variable_inputting;
+	b.innerText = operand1 + "-";
 	operand_state = 2;
 }
 
@@ -88,14 +91,14 @@ function click_equal() {
 	b.innerText = b.innerText + a.innerText + "=";
 	switch(operand_state){
 		case 1:
-			variable_result = variable_calced + variable_inputting;
+			variable_result = operand1 + operand2;
 			break;
 		case 2:
-			variable_result = variable_calced - variable_inputting;
+			variable_result = operand1 - operand2;
 			break;
 	}
 	a.innerText = variable_result;
-	variable_inputting = variable_result;
+	operand1 = variable_result;
 	equal_flag = true;
 }
 
